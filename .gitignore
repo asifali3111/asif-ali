@@ -1,0 +1,37 @@
+*.class
+.mtj.tmp/
+# Package Files
+*.jar
+*.war
+*.ear
+# IDE specific
+.apt_generated
+.idea
+.vscode
+*.iml
+.classpath
+.project
+.factorypath
+# Gauge Specific
+.gauge
+logs/
+reports/
+html-report/
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+*.versionsBackup
+# build tool
+target/
+output/
+extent-report/
+hugo-material-docs/
+.DS_Store

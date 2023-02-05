@@ -1,0 +1,42 @@
+Review of the reference-tryout-api
+==============================================
+
+List of specific issues for each EndPoint:
+
+1. /madeup
+* This page only shows what happens if you submit a GET requeust with an URL that doesn't exist (or uses /madeup).
+  BUT the rest of the End Points are primarily used as a POST request. There should be documentation on a POST URL
+  that doesn't exist as well.
+------------------------------------------------------------------------------------------------------------------------------------
+2. /internal_server_error
+* GET /internal_server_error - this should return a 200 not 500, as this is just calling the documentation for the end point
+* What does the reposne for a 500 look like if no data is sent with the POST request /internal_server_error. This is no documented.
+------------------------------------------------------------------------------------------------------------------------------------
+3. /unauthorized
+* This page has two links on the home page.
+------------------------------------------------------------------------------------------------------------------------------------
+4. /no_response
+*
+------------------------------------------------------------------------------------------------------------------------------------
+5. /bad_request
+* In the description it says "This url will return you a 503 Gateway timeout response code".
+  Surley this should be "This url will return you a 400 Bad Request response code".
+* GET /internal_server_error - this should return a 200 not 400, as this is just calling the documentation for the end point
+------------------------------------------------------------------------------------------------------------------------------------
+6. /unauthorized
+* For the POST request, in the response it shows the data sent as well when tested. However this is not what is shown in the document.
+  All other end points shows the data sent in the examples, making me think it was missed off for this end point.
+------------------------------------------------------------------------------------------------------------------------------------
+7. /forbidden
+* GET /forbidden response should be [Status 200 OK] NOT [Status 200 Forbidden] in the documentation
+------------------------------------------------------------------------------------------------------------------------------------
+8. /gateway_timeout
+* 
+------------------------------------------------------------------------------------------------------------------------------------
+.9. /manage/health
+* This is just another endpoint for the same API, BUT it is written in a whole seperate section. Why not just list it with the rest? ------------------------------------------------------------------------------------------------------------------------------------
+Issues for all End Points (except the /manage/health):
+* No pages show what happens if malformed data is sent in a POST request
+* No pages show what happens if null data is sent in a POST request
+* There is little/no details on if any headers are needed or not
+* What to expected is different data types are used in data sent with POST requests?
