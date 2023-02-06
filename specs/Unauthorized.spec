@@ -20,4 +20,4 @@ of those actions
 ## Details of the last response is returned when doing a GET to /unauthorized/last endpoint
 
 * Get to the "unauthorized/last" endpoint
-// Implement a step that checks the response contains the correct details
+* The response details should be as expected

@@ -1,8 +1,11 @@
+import com.google.gson.JsonObject;
 import com.mashape.unirest.http.HttpResponse;
 import com.thoughtworks.gauge.Gauge;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.Assert;
 
 import java.sql.Timestamp;
@@ -45,5 +48,12 @@ public class Assertions {
 //        long t3 = t2 - t1;
 //        Assert.assertTrue(t3 <= 1);
     }
-
+    @Step("The response details should be as expected")
+    public void TheResponseDetailsShouldBeAsExpected() {
+        DataStore dataStore = DataStoreFactory.getScenarioDataStore();
+        HttpResponse<String> response = (HttpResponse<String>)dataStore.get("httpResponse");
+        Assert.assertTrue(response.getBody().contains("lastUpdated"));
+        Assert.assertTrue(response.getBody().contains("mediaTypeUsed"));
+        Assert.assertTrue(response.getBody().contains("bodyReceived"));
+    }
 }
