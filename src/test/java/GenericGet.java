@@ -27,6 +27,7 @@ public class GenericGet {
             Gauge.writeMessage(httpResponseStatusText);
             Gauge.writeMessage(httpResponse.getBody().toString());
             String updatedTime = httpResponse.getBody().getObject().getJSONArray("internal_server_error").getJSONObject(0).get("lastUpdated").toString();
+            dataStore.put("lastUpdatedTime", updatedTime);
         }
         catch (UnirestException e) {
             e.printStackTrace();

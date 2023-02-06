@@ -6,6 +6,12 @@ import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+
 public class GenericPost {
 
     @Step("Post to the <endpoint> endpoint")
@@ -13,7 +19,7 @@ public class GenericPost {
         DataStore dataStore = DataStoreFactory.getScenarioDataStore();
         HttpResponse<String> httpResponse;
         String url = "https://reference-tryout-api.herokuapp.com/" + endpoint;
-        System.out.println(url);
+        System.out.println("/n" + url);
         Gauge.writeMessage(url);
         try {
             httpResponse = Unirest.post(url)
@@ -21,6 +27,11 @@ public class GenericPost {
                     .header("Accept", "*/*")
                     .body("{\"test\": 123}")
                     .asString();
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+            String postTimeStamp = dateFormat.format(timestamp);
+            dataStore.put("postRequestTime", postTimeStamp);
+
             dataStore.put("httpResponse", httpResponse);
             Integer httpResponseCode = httpResponse.getStatus();
             dataStore.put("httpResponseCode", httpResponseCode);
